@@ -1,0 +1,7 @@
+span#gpt_ui {
+    ul {
+        li {
+            list-style: none;
+        }
+    }
+}

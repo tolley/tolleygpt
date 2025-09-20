@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Urban Inline';
+    src: url( '/fonts/UrbanInline.otf' ) format( 'opentype' );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('/images/Art-deco-gold-wallpaper-2560x1440.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 42px;
+    position: relative;
+    font-family: Urban Inline;
+    color: #868080;
+}
+
+header.shadow {
+    text-shadow: 11px 9px 5px #8A894F;
+    color: #e4d9d9;
+}
+
+.content {
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+.content a {
+    color: #E08A1F;
+}
+
+.content p {
+    margin: 10px 0px 15px 0px;
+    text-align: left;
+}

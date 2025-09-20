@@ -1,0 +1,93 @@
+<?php
+/**
+ * The contents for the api call and response to chatgpt
+ */
+
+if( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
+    die( 'POST only' );
+}
+
+$env = parse_ini_file( '.env' );
+
+if( ! isset( $env['API_KEY'] ) ) {
+    die( 'No API Key found' );
+}
+
+$apiKey = $env['API_KEY'];
+$model = 'gpt-4o';
+
+$response = [];
+
+if( isset( $_POST['prompt'] ) ) {
+    $prompt = trim( $_POST['prompt'] );
+    $cgptResp = queryGPT( $prompt, $apiKey, $model );
+
+    if( is_array( $cgptResp ) && array_key_exists( 'choices', $cgptResp ) &&
+        ! empty( $cgptResp['choices'] ) ) {
+            $response['result'] = $cgptResp['choices'][0]['message']['content'];
+    } else {
+        $response['result'] = 'Choices not found in response';
+    }
+} else {
+    $response['result'] = 'No prompt found';
+}
+
+echo json_encode( $response );
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+/**
+ * Sends a prompt to ChatGPT
+ * @param   $prompt The user's prompt
+ * @param   $apiKey The chatgpt api key
+ * @param   $model  The chatgpt model
+ * @return  ChatGPT's response
+ */
+function queryGPT( string $prompt, string $apiKey, string $model ) {
+    $systemContent = getSystemContent();
+
+    $ch = curl_init( 'https://api.openai.com/v1/chat/completions' );
+
+    $data = [
+        "model" => $model, // gpt-4-turbo, gpt-3.5-turbo, etc
+        "messages" => [
+            ["role" => "system", "content" => $systemContent],
+            ["role" => "user", "content" => $prompt]
+        ],
+        'max_tokens' => 200,
+        "temperature" => 0.5
+    ];
+
+    // Set cURL options
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt( $ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer $apiKey"
+    ]);
+    curl_setopt( $ch, CURLOPT_POST, true );
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ) );
+
+    // Execute and handle response
+    $response = curl_exec($ch);
+
+    if( curl_errno( $ch ) ) {
+        echo 'Curl error: ' . curl_error( $ch );
+        exit;
+    }
+
+    curl_close($ch);
+
+    // Decode and print the assistant's reply
+    $result = json_decode( $response, true );
+    return $result;
+}
+
+
+/**
+ * Gets the system content for our chatgpt request
+ * @return string   The system content
+ */
+function getSystemContent() {
+    return 'You are a helpful assistant to me and will strongly promote my 18 year career as a web engineer. If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. I have worked with PHP for 12 years, javascript for 18 years, css and html for 18 years, node js for 2 years';
+}

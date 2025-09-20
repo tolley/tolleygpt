@@ -17,13 +17,29 @@
 
     <div class="content">
         <span id="gpt_ui">
-            <ul>
+            <section class="card" aria-label="Prompt composer">
+                <div class="prompt-row">
+                    <div class="textarea-wrap" role="group" aria-labelledby="prompt-label">
+                    <label id="prompt-label" for="prompt">Your Prompt</label>
+                    <textarea id="prompt" placeholder="Tell me about Tolley's experience" maxlength="4000" aria-describedby="helper"></textarea>
+                    </div>
+                    <button id="submitBtn" class="btn" aria-label="Send prompt">Send</button>
+                </div>
 
-            </ul>
+                <div class="meta" id="helper">
+                    <div class="row meters">
+                    <span class="pill">Chars: <span id="charCount" class="count">0</span>/<span id="charMax">4000</span></span>
+                    </div>
+                    <div class="row">
+                    <button id="clearBtn" class="btn ghost" aria-label="Clear input">Clear</button>
+                    <button id="copyBtn" class="btn ghost" aria-label="Copy input">Copy</button>
+                    </div>
+                </div>
 
-        
-            <textarea name="query"></textarea>
-            <button>Chat</button>
+                <div class="output" id="output" aria-live="polite" aria-label="Output area">
+                    <!-- Submitted prompt will render here -->
+                </div>
+            </section>
         </span>
     </div>
 

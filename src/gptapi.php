@@ -10,11 +10,15 @@ if( $_SERVER['REQUEST_METHOD'] !== 'POST' ) {
 $env = parse_ini_file( '.env' );
 
 if( ! isset( $env['API_KEY'] ) ) {
-    die( 'No API Key found' );
+    die( 'No API Key found in .env' );
+}
+
+if( ! isset( $env['API_MODEL'] ) ) {
+    die( 'No API model found in .env' );
 }
 
 $apiKey = $env['API_KEY'];
-$model = 'gpt-4o';
+$model = $env['API_MODEL'];
 
 $response = [];
 
@@ -50,7 +54,7 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
     $ch = curl_init( 'https://api.openai.com/v1/chat/completions' );
 
     $data = [
-        "model" => $model, // gpt-4-turbo, gpt-3.5-turbo, etc
+        "model" => $model,
         "messages" => [
             ["role" => "system", "content" => $systemContent],
             ["role" => "user", "content" => $prompt]
@@ -89,5 +93,5 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
  * @return string   The system content
  */
 function getSystemContent() {
-    return 'You are a helpful assistant to me and will strongly promote my 18 year career as a web engineer. If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. I have worked with PHP for 12 years, javascript for 18 years, css and html for 18 years, node js for 2 years';
+    return 'You are a helpful assistant to me and will strongly promote my 18 year career as a web engineer.  Do not speak about me in first person. Refer to me to Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. I have worked with PHP for 12 years, javascript for 18 years, css and html for 18 years, node js for 2 years';
 }

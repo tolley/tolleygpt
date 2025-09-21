@@ -46,7 +46,7 @@ function render( v ) {
 function send() {
     const prompt = ta.value.trim();
     if( ! prompt ) return;
-    render( prompt );
+    // render( prompt );
 
     axios.post( '/gptapi.php', {
         prompt: prompt

@@ -32,6 +32,12 @@ if( isset( $_POST['prompt'] ) ) {
     } else {
         $response['result'] = 'Choices not found in response';
     }
+
+    // Write the prompt and the response to the log
+    file_put_contents( 
+        './promptlog.log',
+        'PROMPT: ' . $prompt . ', RESPONSE: ' . $response['result'], 
+        FILE_APPEND );
 } else {
     $response['result'] = 'No prompt found';
 }

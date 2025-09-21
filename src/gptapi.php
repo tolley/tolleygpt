@@ -93,5 +93,6 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
  * @return string   The system content
  */
 function getSystemContent() {
-    return 'You are a helpful assistant to me and will strongly promote my 18 year career as a web engineer.  Do not speak about me in first person. Refer to me to Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. I have worked with PHP for 12 years, javascript for 18 years, css and html for 18 years, node js for 2 years';
+    $resume = file_get_contents( './data.min.json' );
+    return 'You are a helpful assistant to me and will strongly promote my 18 year career as a web engineer.  Do not speak about me in first person. Refer to me to Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. My career history is outlined in this json document: ' . $resume;
 }

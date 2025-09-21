@@ -1,7 +1,6 @@
 const ta = document.getElementById( 'prompt' );
 const submitBtn = document.getElementById( 'submitBtn' );
 const clearBtn = document.getElementById( 'clearBtn' );
-const copyBtn = document.getElementById( 'copyBtn' );
 const out = document.getElementById( 'output' );
 
 const charCount = document.getElementById( 'charCount' );
@@ -100,15 +99,6 @@ clearBtn.addEventListener( 'click', () => {
     out.textContent = "";
     out.classList.remove( "typing" );
 } );
-copyBtn.addEventListener('click', async ()=>{
-    try{
-        await navigator.clipboard.writeText(ta.value);
-        copyBtn.textContent = 'Copied!';
-        setTimeout(()=> copyBtn.textContent = 'Copy', 900);
-    } catch(e) {
-        console.error(e);
-    }
-});
 
 // Shortcut to focus (Ctrl/Cmd + K)
 window.addEventListener('keydown', (e)=>{

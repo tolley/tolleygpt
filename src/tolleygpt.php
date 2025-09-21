@@ -40,11 +40,10 @@
 
                 <div class="meta" id="helper">
                     <div class="row meters">
-                    <span class="pill">Chars: <span id="charCount" class="count">0</span>/<span id="charMax">4000</span></span>
+                        <span class="pill">Chars: <span id="charCount" class="count">0</span>/<span id="charMax">4000</span></span>
                     </div>
                     <div class="row">
-                    <button id="clearBtn" class="btn ghost" aria-label="Clear input">Clear</button>
-                    <button id="copyBtn" class="btn ghost" aria-label="Copy input">Copy</button>
+                        <button id="clearBtn" class="btn ghost" aria-label="Clear input">Clear</button>
                     </div>
                 </div>
 

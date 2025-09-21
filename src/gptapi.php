@@ -36,7 +36,7 @@ if( isset( $_POST['prompt'] ) ) {
     // Write the prompt and the response to the log
     file_put_contents( 
         './promptlog.log',
-        'PROMPT: ' . $prompt . ', RESPONSE: ' . $response['result'], 
+        'PROMPT: ' . $prompt . "\n", 
         FILE_APPEND );
 } else {
     $response['result'] = 'No prompt found';

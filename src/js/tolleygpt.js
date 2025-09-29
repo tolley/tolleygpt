@@ -10,17 +10,19 @@ const lineCount = document.getElementById( 'lineCount' );
 
 let typerToken = 0;
 
-function sleep( ms ){ return new Promise( r => setTimeout( r, ms ) ); }
+function sleep( ms ) {
+    return new Promise( r => setTimeout( r, ms ) );
+}
 
 const MAXLEN = parseInt( ta.getAttribute('maxlength') || '4000', 10 );
 charMax.textContent = MAXLEN;
 
-function autosize(){
+function autosize() {
     ta.style.height = 'auto';
     ta.style.height = Math.min(ta.scrollHeight, window.innerHeight * 0.4) + 'px';
 }
 
-function counts(){
+function counts() {
     const v = ta.value;
     const words = v.trim().length ? v.trim().split(/\s+/).length : 0;
     const lines = v.split(/\n/).length;
@@ -38,14 +40,16 @@ function counts(){
 
 function render( v ) {
     const when = new Date().toLocaleString();
-    const text = `📝 Prompt @ ${when}\n\n${v}`;
+    const text = `${v}`;
     typeOut( text, out, { delay: 16, newlineDelay: 70 } );
 }
 
 function send() {
     const prompt = ta.value.trim();
     if( ! prompt ) return;
-    // render( prompt );
+
+    render( prompt );
+    out.classList.add( 'wave-band' );
 
     axios.post( '/gptapi.php', {
         prompt: prompt
@@ -56,15 +60,16 @@ function send() {
     } )
     .then( ( resp ) => {
         render( resp.data.result );
-        console.log( 'response = ', resp.data.result );
+        out.classList.remove( 'wave-band' );
      } )
     .catch( ( error ) => { console.error } );
 
     ta.value = '';
-    counts(); autosize();
+    counts();
+    autosize();
 }
 
-async function typeOut( text, el, { delay = 18, newlineDelay = 60 } = {} ){
+async function typeOut( text, el, { delay = 18, newlineDelay = 60 } = {} ) {
   const token = ++typerToken;            // bump token to cancel prior runs
   el.textContent = "";
   el.classList.add( "typing" );
@@ -109,4 +114,5 @@ window.addEventListener('keydown', (e)=>{
 });
 
 // Init
-autosize(); counts();
+autosize();
+counts();

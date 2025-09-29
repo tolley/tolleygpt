@@ -7,10 +7,10 @@ span#gpt_ui {
 }
 
 :root{
-    --bg: #0b0c10;
-    --panel: #121318;
+    --bg: #f7f8fb;
+    --panel: #ffffff;
     --muted: #8b93a1;
-    --text: #eaeef7;
+    --text: #121318;
     --accent: #7aa2ff;
     --accent-2:#59f1c8;
     --border: #232530;
@@ -21,9 +21,17 @@ span#gpt_ui {
 }
 @media (prefers-color-scheme: light) {
     :root{
-    --bg:#f7f8fb; --panel:#ffffff; --muted:#6c7280; --text:#121318;
-    --accent:#3b82f6; --accent-2:#10b981; --border:#e7e8ee;
-    --danger:#e11d48; --ok:#059669;
+        --bg:#f7f8fb;
+        --panel:#ffffff;
+        --muted:#6c7280;
+        --text:#121318;
+        --accent:#3b82f6;
+        --accent-2:#10b981;
+        --border:#e7e8ee;
+        --danger:#e11d48;
+        --ok:#059669;
+        --radius: 14px;
+        --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
 }
 *{ box-sizing: border-box; }
@@ -109,7 +117,7 @@ textarea{
 
 .output{
     margin-top: 8px;
-    border:1px solid var(--border); border-radius: 12px; padding:16px; background: transparent;
+    border:1px solid var(--border); border-radius: 12px; padding:16px;
     min-height: 80px;
     font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     color: #000;
@@ -132,3 +140,40 @@ output.typing::after{
   vertical-align: -0.2em;
 }
 @keyframes blink { 50% { opacity: 0; } }
+
+
+/** begin wave band animation effect **/
+.wave-band {
+  --bg: #697591;           /* base background */
+  --wave: #d3d3d4;         /* wave color */
+  --speed: 1s;             /* animation speed */
+  color: #697591;
+
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      transparent 40%,
+      color-mix(in oklab, var(--wave), #4d2929 40%) 50%,
+      transparent 60%,
+      transparent 100%);
+  background-color: var(--bg);
+  background-size: 200% 100%;
+  text-align: center;
+  animation: wave-slide var(--speed) linear infinite;
+}
+
+/* Move the gradient horizontally */
+@keyframes wave-slide {
+  from { background-position: 1% 0; }
+  to   { background-position: 100% 0; }
+}
+
+/* Be nice to users who disable motion */
+@media( prefers-reduced-motion: reduce ) {
+  .wave-band { animation: none; }
+}
+
+/** end wave band animation effect **/
+

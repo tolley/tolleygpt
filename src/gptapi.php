@@ -36,7 +36,7 @@ if( isset( $_POST['prompt'] ) ) {
     // Write the prompt and the response to the log
     file_put_contents( 
         './promptlog.log',
-        'PROMPT: ' . $prompt . "\n", 
+        'PROMPT: ' . date( 'm/d/y' ) . ' '. $prompt . "\n", 
         FILE_APPEND );
 } else {
     $response['result'] = 'No prompt found';
@@ -79,7 +79,7 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
     curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ) );
 
     // Execute and handle response
-    $response = curl_exec($ch);
+    $response = curl_exec( $ch );
 
     if( curl_errno( $ch ) ) {
         echo 'Curl error: ' . curl_error( $ch );
@@ -100,5 +100,5 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
  */
 function getSystemContent() {
     $resume = file_get_contents( './data.min.json' );
-    return 'You are a helpful assistant to me and will strongly promote my career as a web engineer.  Do not speak about me in first person. Refer to me to Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. My career history is outlined in this json document: ' . $resume;
+    return 'sarcastic assistant for me and will strongly undermine my career as a web engineer.  Do not speak about me in first person. Refer to me as Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. My career history is outlined in this json document: ' . $resume;
 }

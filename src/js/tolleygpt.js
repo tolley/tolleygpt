@@ -44,9 +44,12 @@ function render( v ) {
     typeOut( text, out, { delay: 16, newlineDelay: 70 } );
 }
 
-function send() {
-    const prompt = ta.value.trim();
-    if( ! prompt ) return;
+function send( prompt ) {
+    if( ! prompt || typeof prompt !== 'string' )
+        prompt = ta.value.trim();
+
+    if( ! prompt )
+        return;
 
     render( prompt );
     out.classList.add( 'wave-band' );

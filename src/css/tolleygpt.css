@@ -56,6 +56,11 @@ span#gpt_ui {
 }
 .sub{ color:var(--muted); margin-bottom: 20px; }
 
+.suggestion {
+    border: solid 1px var( --accent-2 );
+    background-color: var( --accent-2 );
+}
+
 .card{
     background: var(--panel);
     border:1px solid var(--border);
@@ -144,9 +149,9 @@ output.typing::after{
 
 /** begin wave band animation effect **/
 .wave-band {
-  --bg: #697591;           /* base background */
+  --bg: #cccdcf;           /* base background */
   --wave: #d3d3d4;         /* wave color */
-  --speed: 1s;             /* animation speed */
+  --speed: 2s;             /* animation speed */
   color: #697591;
 
   padding: 2rem 3rem;
@@ -155,18 +160,17 @@ output.typing::after{
     linear-gradient(90deg,
       transparent 0%,
       transparent 40%,
-      color-mix(in oklab, var(--wave), #4d2929 40%) 50%,
+      color-mix(in oklab, var(--wave), #223cca 40%) 50%,
       transparent 60%,
       transparent 100%);
   background-color: var(--bg);
   background-size: 200% 100%;
-  text-align: center;
-  animation: wave-slide var(--speed) linear infinite;
+  animation: wave-slide var(--speed) linear reverse infinite;
 }
 
 /* Move the gradient horizontally */
 @keyframes wave-slide {
-  from { background-position: 1% 0; }
+  from { background-position: 0% 0; }
   to   { background-position: 100% 0; }
 }
 

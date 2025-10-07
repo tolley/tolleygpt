@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php
+
+$arSuggestions = array(
+    "Full Stack",
+    "Front End",
+    "Database",
+    "Node.js"
+);
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -22,7 +31,7 @@
 <body>
 
     <header>
-        tolleycoder.com!
+        Tolleycoder.com!
     </header>
 
     <div class="content">
@@ -32,10 +41,13 @@
             <section class="card" aria-label="Prompt composer">
                 <div class="prompt-row">
                     <div class="textarea-wrap" role="group" aria-labelledby="prompt-label">
-                    <label id="prompt-label" for="prompt">Your Prompt</label>
-                    <textarea id="prompt" placeholder="Tell me about Tolley's experience" maxlength="4000" aria-describedby="helper"></textarea>
+                        <label id="prompt-label" for="prompt">Your Prompt</label>
+                        <textarea id="prompt" placeholder="Ask about Tolley's experience, or any specific area! (Click on a suggestion below to get started)"
+                                maxlength="4000" aria-describedby="helper"></textarea>
                     </div>
-                    <button id="submitBtn" class="btn" aria-label="Send prompt">Send</button>
+                    <button id="submitBtn" class="btn" aria-label="Send prompt">
+                        Send
+                    </button>
                 </div>
 
                 <div class="meta" id="helper">
@@ -47,8 +59,15 @@
                     </div>
                 </div>
 
-                <div class="output" id="output" aria-live="polite" aria-label="Output area">
-                    <!-- Submitted prompt will render here -->
+                <div class="output" id="output" aria-live="polite" aria-label="Output area"></div>
+
+                <div class="prompt-row">
+                    <?php foreach( $arSuggestions as $suggestion ): ?>
+                        <button class="btn suggestion" aria-label="<?= $suggestion ?>"
+                            onClick="send( '<?= $suggestion ?>' )">
+                                <?= $suggestion ?>
+                        </button>
+                    <?php endforeach; ?>
                 </div>
             </section>
         </span>

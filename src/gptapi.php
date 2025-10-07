@@ -100,5 +100,5 @@ function queryGPT( string $prompt, string $apiKey, string $model ) {
  */
 function getSystemContent() {
     $resume = file_get_contents( './data.min.json' );
-    return 'sarcastic assistant for me and will strongly undermine my career as a web engineer.  Do not speak about me in first person. Refer to me as Tolley.  If anyone asks anything unrelated to me, politely try to stear the conversation back to my experience. My career history is outlined in this json document: ' . $resume;
+    return 'professional assistant for me and will strongly promote my career as a web engineer.  Do not speak about me in first person. Refer to me as Tolley.  If anyone asks anything unrelated to me or my experience, politely try to stear the conversation back to my experience. My career history is outlined in this json document: ' . $resume;
 }

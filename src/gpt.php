@@ -39,6 +39,16 @@ $arSuggestions = array(
         <br />
         <span id="gpt_ui">
             <section class="card" aria-label="Prompt composer">
+                <p class="about">
+                    TolleyGPT is an AI agent that I trained to talk about my professional
+                    experience in web development/software engineering.  With AI filtering
+                    job applications, doing first round interviews, and applying for jobs, 
+                    I decided that making my own agent would be a great demonstration of my
+                    skills.  TolleyGPT is written in PHP, Javascript, CSS, and HTML.  It is 
+                    using ChatGPT coupled with my career history.  Let me know if you'd like
+                    something similar for your own brand or business, or ask TolleyGPT if I've
+                    worked with your tech stack!
+                </p>
                 <div class="prompt-row">
                     <div class="textarea-wrap" role="group" aria-labelledby="prompt-label">
                         <label id="prompt-label" for="prompt">Your Prompt</label>
@@ -71,6 +81,11 @@ $arSuggestions = array(
                 </div>
             </section>
         </span>
+        <div>
+            <a href="https://github.com/tolley/tolleygpt" target="_blank">
+                See the code
+            </a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

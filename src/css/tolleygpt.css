@@ -4,6 +4,12 @@ span#gpt_ui {
             list-style: none;
         }
     }
+
+    p.about {
+        color: #000;
+        font-weight: normal;
+        font-size: 12pt;
+    }
 }
 
 :root{
